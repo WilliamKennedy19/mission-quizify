@@ -51,27 +51,41 @@ class ChromaCollectionCreator:
         # Step 1: Check for processed documents
         if len(self.processor.pages) == 0:
             st.error("No documents found!", icon="🚨")
-            return st.error("Error: No documents have been processed.")
+            return False
 
         # Step 2: Split documents into text chunks
         # Use a TextSplitter from Langchain to split the documents into smaller text chunks
         # https://python.langchain.com/docs/modules/data_connection/document_transformers/character_text_splitter
         # [Your code here for splitting documents]
 
-        texts = CharacterTextSplitter(separator= " ", chunk_size=100, chunk_overlap=20)
-        text_chunks = texts.split_text(documents)
-        
-        if texts is not None:
-            st.success(f"Successfully split pages to {len(texts)} documents!", icon="✅")
+        text_splitter = CharacterTextSplitter(
+            separator="\n",  # Define a suitable separator
+            chunk_size=1000,  # Define the chunk size
+            chunk_overlap=200  # Define the chunk overlap
+        )       
+
+        text_chunks = []
+
+        for doc in self.processor.pages:
+            #with hasattr(doc,"page_content"):
+            chunks = text_splitter.split_text(doc.page_content)
+            text_chunks.extend(chunks)
+
+
 
         # Step 3: Create the Chroma Collection
         # https://docs.trychroma.com/
         # Create a Chroma in-memory client using the text chunks and the embeddings model
         # [Your code here for creating Chroma collection]
 
-
+        try:
+            self.db = Chroma.from_documents(documents=chunks, embedding=self.embed_model)
+            st.success("Successfully created Chroma Collection!", icon="✅")
+        
+        except Exception as e:
+            st.error("Failed to create Chroma collection")
         # Initialize the Chroma instance with the embeddings model
-        chroma = Chroma(embeddings_model="textembedding-gecko@003")
+        #chroma = Chroma(embeddings_model="textembedding-gecko@003")
 
         # Create Documents from the text chunks
         documents = [Document(text=chunk) for chunk in text_chunks]
