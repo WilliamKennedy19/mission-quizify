@@ -42,7 +42,7 @@ class DocumentProcessor:
         """
         
         # Step 1: Render a file uploader widget. Replace 'None' with the Streamlit file uploader code.
-        uploaded_files = st.file_uploader(label="", type='pdf',accept_multiple_files=True)
+        uploaded_files = st.file_uploader(label="None", type='pdf',accept_multiple_files=True)
         
         if uploaded_files is not None:
             for uploaded_file in uploaded_files:
@@ -65,7 +65,9 @@ class DocumentProcessor:
                 pages = loader.load_and_split()
                 # Step 3: Then, Add the extracted pages to the 'pages' list.
                 #####################################
-                self.pages += pages
+
+                self.pages.extend(pages)
+                
                 # Clean up by deleting the temporary file.
                 os.unlink(temp_file_path)
             

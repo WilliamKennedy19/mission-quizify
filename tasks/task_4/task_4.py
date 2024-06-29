@@ -70,7 +70,7 @@ class EmbeddingClient:
 
 if __name__ == "__main__":
     model_name = "textembedding-gecko@003"
-    project = "gemini-quizify-426909"
+    project = "gemini-quizify-2"
     location = "us-central1"
 
     embedding_client = EmbeddingClient(model_name, project, location)

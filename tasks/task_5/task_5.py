@@ -61,43 +61,40 @@ class ChromaCollectionCreator:
         text_splitter = CharacterTextSplitter(
             separator="\n",  # Define a suitable separator
             chunk_size=1000,  # Define the chunk size
-            chunk_overlap=200  # Define the chunk overlap
+            chunk_overlap=200,  # Define the chunk overlap
+            length_function=len,
+            is_separator_regex=False,
         )       
 
         text_chunks = []
 
         for doc in self.processor.pages:
-            #with hasattr(doc,"page_content"):
-            chunks = text_splitter.split_text(doc.page_content)
-            text_chunks.extend(chunks)
+            if hasattr(doc,'page_content'):
+                text_chunks.extend(text_splitter.split_documents([doc]))
+            else:
+                st.error("Document object does not have the expected 'content' attribute.")
 
-
+        if text_chunks:
+            st.success(f"Successfully split pages into {len(text_chunks)} documents!", icon="✅")
+        else:
+            st.error("Failed to split documents into chunks!", icon=":rotating_light:")
+            return
 
         # Step 3: Create the Chroma Collection
         # https://docs.trychroma.com/
         # Create a Chroma in-memory client using the text chunks and the embeddings model
         # [Your code here for creating Chroma collection]
+        # Initialize the Chroma collection with the embeddings model
 
         try:
-            self.db = Chroma.from_documents(documents=chunks, embedding=self.embed_model)
+            self.db = Chroma.from_documents(text_chunks, self.embed_model.client, persist_directory="./chroma_db")
             st.success("Successfully created Chroma Collection!", icon="✅")
-        
+
         except Exception as e:
-            st.error("Failed to create Chroma collection")
-        # Initialize the Chroma instance with the embeddings model
-        #chroma = Chroma(embeddings_model="textembedding-gecko@003")
+            st.error(f"Failed to create Chroma Collection because of error '{e}'", icon="🚨")
 
-        # Create Documents from the text chunks
-        documents = [Document(text=chunk) for chunk in text_chunks]
+        # Display the created Chroma collection
 
-        # Create a Chroma collection in memory with the text chunks
-        
-        chroma_collection = chroma.from_documents(documents)
-        
-        if self.db:
-            st.success("Successfully created Chroma Collection!", icon="✅")
-        else:
-            st.error("Failed to create Chroma Collection!", icon="🚨")
     
     def query_chroma_collection(self, query) -> Document:
         """
@@ -114,6 +111,9 @@ class ChromaCollectionCreator:
                 st.error("No matching documents found!", icon="🚨")
         else:
             st.error("Chroma Collection has not been created!", icon="🚨")
+    
+    def as_retriever(self):
+        return self.db.as_retriever()
 
 if __name__ == "__main__":
     processor = DocumentProcessor() # Initialize from Task 3
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     
     embed_config = {
         "model_name": "textembedding-gecko@003",
-        "project": "gemini-quizify",
+        "project": "gemini-quizify-2",
         "location": "us-central1"
     }
     

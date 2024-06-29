@@ -9,6 +9,7 @@ from tasks.task_5.task_5 import ChromaCollectionCreator
 
 from langchain_core.prompts import PromptTemplate
 from langchain_google_vertexai import VertexAI
+from langchain_core.output_parsers import JsonOutputParser
 
 class QuizGenerator:
     def __init__(self, topic=None, num_questions=1, vectorstore=None):
@@ -96,8 +97,10 @@ class QuizGenerator:
         setup_and_retrieval = RunnableParallel(
             {"context": retriever, "topic": RunnablePassthrough()}
         )
+
+        parser = JsonOutputParser()
         # Create a chain with the Retriever, PromptTemplate, and LLM
-        chain = setup_and_retrieval | prompt | self.llm 
+        chain = setup_and_retrieval | prompt | self.llm | parser
 
         # Invoke the chain with the topic as input
         response = chain.invoke(self.topic)
@@ -123,26 +126,19 @@ class QuizGenerator:
         """
         self.question_bank = [] # Reset the question bank
 
-        for _ in range(self.num_questions):
-            ##### YOUR CODE HERE #####
-            question_str = # Use class method to generate question
-            
-            ##### YOUR CODE HERE #####
-            try:
-                # Convert the JSON String to a dictionary
-            except json.JSONDecodeError:
-                print("Failed to decode question JSON.")
-                continue  # Skip this iteration if JSON decoding fails
-            ##### YOUR CODE HERE #####
+        for i in range(self.num_questions):
 
-            ##### YOUR CODE HERE #####
+            question = self.generate_question_with_vectorstore() # Use class method to generate question
+
+
             # Validate the question using the validate_question method
             if self.validate_question(question):
                 print("Successfully generated unique question")
-                # Add the valid and unique question to the bank
+                self.question_bank.append(question)
             else:
                 print("Duplicate or invalid question detected.")
-            ##### YOUR CODE HERE #####
+                continue
+
 
         return self.question_bank
 
@@ -166,10 +162,21 @@ class QuizGenerator:
 
         Note: This method assumes `question` is a valid dictionary and `question_bank` has been properly initialized.
         """
-        ##### YOUR CODE HERE #####
         # Consider missing 'question' key as invalid in the dict object
         # Check if a question with the same text already exists in the self.question_bank
-        ##### YOUR CODE HERE #####
+
+
+        is_unique = True
+
+        if 'question' not in question:
+            return False
+        
+
+        for quest in self.question_bank:
+            if question['question'] == quest['question']:
+                is_unique = False
+                break
+
         return is_unique
 
 
@@ -178,7 +185,7 @@ if __name__ == "__main__":
     
     embed_config = {
         "model_name": "textembedding-gecko@003",
-        "project": "YOUR-PROJECT-ID-HERE",
+        "project": "gemini-quizify-2",
         "location": "us-central1"
     }
     

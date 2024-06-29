@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
         # Step 1: init the question bank list in st.session_state
         st.session_state['question_bank'] = []
-        st.session_state['display_quiz'] = []
+
     
         screen = st.empty()
         with screen.container():
@@ -97,6 +97,7 @@ if __name__ == "__main__":
                 # Here we use the next_question_index method from our quiz_manager class
                 # st.form_submit_button("Next Question, on_click=lambda: quiz_manager.next_question_index(direction=1)")
                 st.form_submit_button("Next Question", on_click=lambda: quiz_manager.next_question_index(direction=1))
+                st.form_submit_button("Previous Question", on_click=lambda: quiz_manager.next_question_index(direction=-1))
                 
                 if answer_choice and answer is not None:
                     correct_answer_key = index_question['answer']

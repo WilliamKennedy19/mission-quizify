@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "gemini-quizify-426909",
+  "private_key_id": "df0f8b8658e2789bc1c8c27da2b9023fcee152fd",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCznBegIDJLE0jp\nDvn7k9N+QHwXcvgBnbPH+Om87uFqqugxh73X31Ixd3PSsGQ/4sM1Mb3fdAU4NOxE\nVhQUGvSuWXfnRPslMzhED/3HHt+daFyAlRKYWg9bgyROAdiqYXjenvY+0dNUonLQ\noIfsu06qAa0hT/KYnYYSn8osgItbHnpF3UQsf/vyBb1QQqxaxOd85tHiZZ/5YVlC\nzYkyzGzfjZkSOrcwJelKiArzdK4iPqOrVOpuXP3+/08m7xz+z5s0nenjDxcI+F1s\nKzGBxN5Q1U9PoBLrMDkw1SoQvQ1Uzza7f8GFHfrvZXC76rmIfjRMJg0VxZ8dH2VO\npl/NcE8LAgMBAAECggEAPl0G+QLk45t1F/MqyncYGsDCNZQmV81NpLQhWIgrPdHM\n4JHM0Z1JmUJsNW4oyOPwOtKkJmfO/iamGM44l4iKh9Up5GPXviFsOnnA+LgYFbws\nTjs0ozC2H2TIIMvUUsiYYtgYEVTix4LGUflDaOfalv4RAr2TMvmTGXlhBhW2DXNP\noL1uESywYN4cCy3I1b7Hv2vEoGY7iHTOPCD6z97ATpcShBfhgLXarr6DIy+YAQ23\n8ROKvJ/4M+0qmBAKDVmS8mHfJZpp9wZJojeEerHTYVdFmNF/omm3AcD5MdtYPf+R\nXUwyVUFd8y3sHnajNbIDiIquBsRb+JYMF2YIBLzmfQKBgQD4ktF+EIuZotW7f+YE\nCMcLC4wgpY6gSBpC3/gofYSHpZN2vmV3KijBendrQcH4aR5+vB8BhHLXw5b4FAxO\n3WuokCAdGOOOPNsqIahXRzYDAxPeVMujlRhmhJwJs4QaBGTGhvS5l8z9IuQQDaMp\n/6zx1S0/vDR6WsGKveZ8B9Mn1wKBgQC4+dBKoLJKHZHFVJ0TM2mrkgYv7Y6OFPud\nTvJY5YxiMv3/TeTnRspoaMgoeEC6YnbPFQcZvhrOwjZmqeqEC2xe6c4Ly7jM2XQp\nSiwEVF+YLba+RaiGzgrkVeymOXmdTzbTINUVMmxMbL2vigSPJ2Df+cpZmsSNtKtk\ngKwBmS1b7QKBgF3rS1AwfC6OgecYShZYIqyfrlBffWY+F/4Qlbjmw/5kpzUEd13x\nBfkkhp51+A4d2bHU7noqSyIO+qm9GXFq49SKsDeOQdxqTfy7PtnLRDMbJJSqwU6L\ndO63SCW6OD2ET3dbYngFTSSP3E/cdzvVKMku3KvqNoHMbLg5TC6s3jF9AoGAfRa6\n6+y2BPbwIBDzVAu9lv/d3UV51M2NxjigHMvG3pV7PM5RULGHqYnKacvAggqaK7od\nniP3/wBJR636YKdU9u6Hn2R6KVWYf1+gWqEwMDohzZRPvjHSHc2ZhmNxwZbTDX2z\ne20o3ZnfwLjGEoTftzc1xtipuOaHzSRSrZYHnZUCgYBdoSeCNSMYlpX5Aj4VQMF+\nLIM19KdNTAPdVhV7lBCh1P7xKvKPXMWpjDwEzuGys8C2S1r6/FEKRDp0WOQEqZhO\nLtCDVJHn+2bkblBL860iqFcCuBmz6SXLhE1QrGXT/TAIag63sW2P44nuIlDTchlB\nf1wUrmPb0WBSmqALF5N+ag==\n-----END PRIVATE KEY-----\n",
+  "client_email": "streamlit@gemini-quizify-426909.iam.gserviceaccount.com",
+  "client_id": "112424636957902095489",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/streamlit%40gemini-quizify-426909.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
