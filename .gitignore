@@ -1,4 +1,4 @@
-env/
+gquiz/
 db/
 __pycache__/
 application_key.json
