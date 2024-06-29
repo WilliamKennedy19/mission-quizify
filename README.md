@@ -17,3 +17,9 @@
 </ol>
 
 
+<h2>Running the project</h2>
+<p>First, you will need to create your own Google Cloud account, set up a project, enable the Vertex AI API and create a service account. Then you will need to set up your local environment variable for the google authenatication API key with the local variable 'GOOGLE_APPLICATION_CREDENTIALS=application_key.json'. Where application_key.json can be downloaded from the service account. Alternatively you can run the command <a href="https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login">'gcloud auth application-default login'</a> command to connect your Google cloud account, but the <a href="https://cloud.google.com/sdk/docs/install">SDK must be installed</a>.</p>
+
+<p>Starting the application on the local machine is simple, simply run the task 10 using the 'streamlit run task_10.py' command. This will launch the application on locally on your machine. Upload small documents, the application does not have the capacity to digest large documents. From there you can choose your topic, number of questions and then the quiz will be generated.</p>
+
+
